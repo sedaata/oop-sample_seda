@@ -1,0 +1,55 @@
+public class Country
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public long Population { get; set; }
+}
+List<Country> sortedCountries = countries.OrderByDescending(country => country.Name).ToList();
+foreach (var country in sortedCountries)
+{
+    Console.WriteLine(country.Name);
+}
+List<string> countryNamesWithW = countries
+    .Where(country => country.Name.ToLower().Contains("w"))
+    .Select(country => country.Name)
+    .ToList();
+
+foreach (var name in countryNamesWithW)
+{
+    Console.WriteLine(name);
+}
+int countCountriesWithW = countries.Count(country => country.Name.ToLower().Contains("w"));
+Console.WriteLine(countCountriesWithW);
+
+
+Country countryWithHighestPopulation = countries.OrderByDescending(country => country.Population).FirstOrDefault();
+Console.WriteLine(countryWithHighestPopulation.Name);
+
+List<Country> countriesEndingWithR = countries.Where(country => country.Name.ToLower().EndsWith("r")).ToList();
+foreach (var country in countriesEndingWithR)
+{
+    Console.WriteLine(country.Name);
+}
+public class City
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public long Population { get; set; }
+}
+
+Country countryWithId22 = countries.FirstOrDefault(country => country.Id == 22);
+if (countryWithId22 != null)
+{
+    Console.WriteLine(countryWithId22.Name);
+}
+else
+{
+    Console.WriteLine("Country not found with ID 22.");
+}
+List<City> cities = GetCities(); // Assuming you have a function to get a list of cities.
+
+List<City> citiesBetween10And50Million = cities.Where(city => city.Population >= 10000000 && city.Population <= 50000000).ToList();
+foreach (var city in citiesBetween10And50Million)
+{
+    Console.WriteLine(city.Name);
+}
